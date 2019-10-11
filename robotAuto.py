@@ -28,6 +28,8 @@ def setThrottle(x):
 		return -1
 	else:
 		Speed = (234.5 * x + 391.5) #max of 626hz and min of 157hz
+		#Formulas for getting above function: [(max-min)/2]x[(max)-((max-min)/2)]
+		#626-157=469/2=234.5 | 626-234.5=391.5
 		return Speed
 
 #Simplified function for movement, no longer requiers repeating commands

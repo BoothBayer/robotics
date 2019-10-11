@@ -32,12 +32,24 @@ else:
 def clear():
 	os.system('clear')
 clear()
-lsY = 0
-lsX = 0
-rsY = 0
-rsX = 0
-lT = 0
-rT = 0
+lsY = 2
+lsX = 2
+rsY = 2
+rsX = 2
+lT = 2
+rT = 2
+roundMe = 4
+xB = 2
+oB = 2
+sB = 2
+tB = 2
+lSh = 2
+rSh = 2
+sB = 2
+stB = 2
+pB = 2
+lSB = 2
+rSB = 2
 while True:
     # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
         pygame.event.get()
@@ -88,35 +100,57 @@ while True:
 		Rservo = 0
 	sleep(0.1)
 #	clear()
-	if(lsY != round(leftstickY, 4)):
-		if(abs(leftstickY) > 0): print("leftstickY: {}".format(round(leftstickY,4)))
-		lsY= round(leftstickY, 4)
-	if(lsX != round(leftstickX, 4)):
-		if(abs(leftstickX) > 0): print("leftstickX: {}".format(round(leftstickX,4)))
-		lsX = round(leftstickX, 4)
-	if(rsY != round(rightstickY, 4)):
-		if(abs(rightstickY) > 0): print("rightstickY: {}".format(round(rightstickY,4)))
-		rsY = round(rightstickY, 4)
-	if(rsX !=round(rightstickX,4)):
-		if(abs(rightstickX) > 0): print("rightstickX: {}".format(round(rightstickX,4)))
-		rsX = round(rightstickX,4)
-	if(xButton): print("xButton {}".format(xButton))
-	if(oButton): print("oButton {}".format(oButton))
-	if(trButton): print("trButton {}".format(trButton))
-	if(sqButton): print("sqButton {}".format(sqButton))
-	if(leftShoulder): print("leftShoulder {}".format(leftShoulder))
-	if(rightShoulder): print("rightShoulder {}".format(rightShoulder))
-	if(lT != round(leftTrigger,4)):
-		if(abs(leftTrigger) > 0): print("Ltrigger {}".format(round(leftTrigger,4)))
-		lT = round(leftTrigger,4)
-	if(rT != round(rightTrigger,4)):
-		if(abs(rightTrigger) > 0): print("Rtrigger {}".format(round(rightTrigger,4)))
-		rT = round(rightTrigger,4)
-	if(selectButton): print("Back Button {}".format(selectButton))
-	if(startButton): print("Start Button {}".format(startButton))
-	if(playButton): print("Play Button {}".format(playButton))
-	if(leftSButton): print("Leftstick Button {}".format(leftSButton))
-	if(rightSButton): print("Rightstick Buttone {}".format(rightSButton))
+	if(lsY != round(leftstickY, roundMe)):
+		print("leftstickY: {}".format(round(leftstickY, roundMe)))
+		lsY= round(leftstickY, roundMe)
+	if(lsX != round(leftstickX, roundMe)):
+		print("leftstickX: {}".format(round(leftstickX, roundMe)))
+		lsX = round(leftstickX, roundMe)
+	if(rsY != round(rightstickY, roundMe)):
+		print("rightstickY: {}".format(round(rightstickY, roundMe)))
+		rsY = round(rightstickY, roundMe)
+	if(rsX !=round(rightstickX, roundMe)):
+		print("rightstickX: {}".format(round(rightstickX, roundMe)))
+		rsX = round(rightstickX, roundMe)
+	if(xB != xButton):
+		print("xButton {}".format(xButton))
+		xB = xButton
+	if(oB != oButton):
+		print("oButton {}".format(oButton))
+		oB = oButton
+	if(tB != trButton):
+		print("trButton {}".format(trButton))
+		tB = trButton
+	if(sB != sqButton):
+		print("sqButton {}".format(sqButton))
+		sB = sqButton
+	if(leftShoulder):
+		print("leftShoulder {}".format(leftShoulder))
+		lSh = leftShoulder
+	if(rightShoulder):
+		print("rightShoulder {}".format(rightShoulder))
+		rSh = rightShoulder
+	if(lT != round(leftTrigger, roundMe)):
+		print("Ltrigger {}".format(round(leftTrigger, roundMe)))
+		lT = round(leftTrigger, roundMe)
+	if(rT != round(rightTrigger, roundMe)):
+		print("Rtrigger {}".format(round(rightTrigger, roundMe)))
+		rT = round(rightTrigger, roundMe)
+	if(selectButton):
+		print("Select Button {}".format(selectButton))
+		sB = selectButton
+	if(startButton):
+		print("Start Button {}".format(startButton))
+		stB = startButton
+	if(playButton):
+		print("Play Button {}".format(playButton))
+		pB = playButton
+	if(leftSButton):
+		print("Leftstick Button {}".format(leftSButton))
+		lSB = leftSButton
+	if(rightSButton):
+		print("Rightstick Buttone {}".format(rightSButton))
+		rSB = rightSButton
 #		leftstickX = gamepad.get_axis(0)
 #		leftstick = gamepad.get_axis(1)
 #		rightstickX = gamepad.get_axis(2)

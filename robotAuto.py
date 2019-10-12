@@ -32,6 +32,10 @@ def setThrottle(x):
 		#626-157=469/2=234.5 | 626-234.5=391.5
 		return Speed
 
+#Because motors are mounted facing different directions from one side of the robot to the other, they run opposite directions when given the same value.
+#Because of this problem one set of motors runs inversely to the other and is given an opposite value...
+#For forward movement rightSide is positive and leftSide is negative, for turning set both sides to positive.
+
 #Simplified function for movement, no longer requiers repeating commands
 def setMove(x):
 	print("STATUS: Moving at",x)
@@ -48,41 +52,27 @@ def setTurn(x):
 	pwm.set_pwm(backRight, 0, allThrottle)
 	pwm.set_pwm(frontLeft, 0, allThrottle)
 	pwm.set_pwm(backLeft, 0, allThrottle)
-
-
-#Because motors are mounted facing different directions from one side of the robot to the other, they run opposite directions when given the same value.
-#Because of this problem one set of motors runs inversely to the other and is given an opposite value...
-#For forward movement rightSide is positive and leftSide is negative, for turning set both sides to positive.
-
+#Another Abstraction for previous two functions
+def setAction(action, speed, time): #Action = 1; Move #Action = 0;Turn
+	if(action): #1 or 0
+		setMove(speed)
+		if(time > 0): #If no timer set, just perform action
+			sleep(time) #DO ACTION FOR THIS MANY SEONDS
+			setMove(0) #Once action completes cease movement
+	else:
+		setTurn(speed)
+		if(time > 0):
+			sleep(time)
+			setTurn(0)
+#------------------------------------------------------------------------------------------------------#
+#---------------------------------------Code-Begins-Here-----------------------------------------------#
+#------------------------------------------------------------------------------------------------------#
 print("-----AUTONOMO-----")
-
+#setAction(action,speed,time)
 print("Forward for 0.5 seconds at 50% Throttle")
-setMove(0.5)
-sleep(0.5)
-print("STOP")
-setMove(0)
-sleep(0.2)
+setAction(1, 0.5, 0.5)
 print("Turn for 1.5 seconds at 50% Throttle")
-setTurn(0.5)
-sleep(1.5)
-print("STOP")
-setMove(0)
+setAction(0, 0.5, 1.5)
 sleep(0.3)
+setMove(0)
 quit()
-
-
-#TURNING MOVEMENT
-#LmotorR = setThrottle(JoyStick(leftstickX) * 1)
-#LmotorL = setThrottle(JoyStick(leftstickX) * 1)
-#pwm.set_pwm(frontRight, 0, int(LmotorR)) #front right
-#pwm.set_pwm(backRight, 0, int(LmotorR)) #back right
-#pwm.set_pwm(frontLeft, 0, int(LmotorL))  #front left
-#pwm.set_pwm(backLeft, 0, int(LmotorL))  #back left
-#FORWARD BACKWARD MOVEMENT
-#LmotorR = setThrottle(JoyStick(leftstick)) #(225 * JoyStick(leftstick) + 376)
-#LmotorL = setThrottle(JoyStick((leftstick) * -1)) #(-225 * JoyStick(leftstick) + 376)
-#pwm.set_pwm(frontRight, 0, int(LmotorR)) #front right
-#pwm.set_pwm(backRight, 0, int(LmotorR)) #back right
-#pwm.set_pwm(frontLeft, 0, int(LmotorL))  #front left
-#pwm.set_pwm(backLeft, 0, int(LmotorL))  #back left
-#quit()

@@ -6,6 +6,9 @@ from __future__ import division
 from time import sleep
 import os
 import Adafruit_PCA9685
+from pyfiglet import Figlet
+ascii = Figlet(font='starwars', width=900)
+print(ascii.renderText('Autonomo'))
 print("AUTONOMOUS MODE LOADING...")
 sleep(1)
 # Initialise the PCA9685 using the default address (0x40).
@@ -67,6 +70,8 @@ def setAction(action, speed, time): #Action = 1; Move #Action = 0;Turn
 #------------------------------------------------------------------------------------------------------#
 #---------------------------------------Code-Begins-Here-----------------------------------------------#
 #------------------------------------------------------------------------------------------------------#
+ascii = pyfiglet.figlet_format("Autonomo")
+print(ascii)
 print("-----AUTONOMO-----")
 #setAction(action,speed,time)
 print("Forward for 0.5 seconds at 50% Throttle")

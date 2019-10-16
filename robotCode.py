@@ -8,7 +8,13 @@ import os
 import pygame
 import Adafruit_PCA9685
 os.environ["SDL_VIDEODRIVER"] = "dummy"
-print("Preparing - 5seconds")
+try:
+	from pyfiglet import Figlet
+	text = Figlet(font='starwars', width=900)
+	print(text.renderText('Robocode'))
+except:
+	print("RoboCode")
+
 sleep(1)
 #pygame.init()
 

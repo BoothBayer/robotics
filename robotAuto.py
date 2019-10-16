@@ -71,13 +71,7 @@ def setAction(action, speed, time): #Action = 1; Move #Action = 0;Turn
 #------------------------------------------------------------------------------------------------------#
 ascii = Figlet(font='starwars', width=900)
 print(ascii.renderText('Autonomo'))
-#print("-----AUTONOMO-----")
-#setAction(action,speed,time)
-#print("Forward for 0.5 seconds at 50% Throttle")
-#setAction(1, 0.5, 0.5)
-#print("Turn for 1.5 seconds at 50% Throttle")
-#setAction(0, 0.5, 1) #at 50% throttle it moves 90degrees right
-#sleep(0.3)
+#at 50% throttle it moves 90degrees right
 setAction(1, 0.5, 1)
 sleep(0.3)
 setAction(0, 0.5, 1)

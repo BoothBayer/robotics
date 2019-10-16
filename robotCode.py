@@ -41,20 +41,20 @@ while True:
 		rightstick = gamepad.get_axis(3)
 		Abutton = gamepad.get_button(0)
 		Bbutton = gamepad.get_button(1)
-		Xbutton = gamepad.get_button(3)
-		Ybutton = gamepad.get_button(4)
-		Lshoulder = gamepad.get_button(6)
-		Rshoulder = gamepad.get_button(7)
-		Ltrigger = gamepad.get_button(8)
-		Rtrigger = gamepad.get_button(9)
-		Backbutton = gamepad.get_button(10)
-		Startbutton = gamepad.get_button(11)
-		LeftstickButton = gamepad.get_button(13)
-		RightstickButton = gamepad.get_button(14)
-		UpDpad = gamepad.get_button(12)
-		DownDpad = gamepad.get_button(13)
-		LeftDpad = gamepad.get_button(14)
-		RightDpad = gamepad.get_button(15)
+#		Xbutton = gamepad.get_button(3)
+#		Ybutton = gamepad.get_button(4)
+#		Lshoulder = gamepad.get_button(6)
+#		Rshoulder = gamepad.get_button(7)
+#		Ltrigger = gamepad.get_button(8)
+#		Rtrigger = gamepad.get_button(9)
+#		Backbutton = gamepad.get_button(10)
+#		Startbutton = gamepad.get_button(11)
+#		LeftstickButton = gamepad.get_button(13)
+#		RightstickButton = gamepad.get_button(14)
+#		UpDpad = gamepad.get_button(12)
+#		DownDpad = gamepad.get_button(13)
+#		LeftDpad = gamepad.get_button(14)
+#		RightDpad = gamepad.get_button(15)
         else:
 		leftstick = 0
 		rightstick = 0
@@ -62,10 +62,10 @@ while True:
 		Rservo = 0
 
 	#set pins here
-	frontLeft = 4
-	backleft = 8
-	frontRight = 0
-	backRight = 15
+	frontLeft = 9
+	backLeft = 8
+	frontRight = 10
+	backRight = 7
 
 	#Prevents thejoystick from "floating" and makes sure values do not exceed [-1,1]
         def JoyStick(y):
@@ -85,32 +85,37 @@ while True:
 		elif(x < -1):
 			return -1
 		else:
-			Speed = (234.5 * x + 391.5)
+			Speed = (222.5 * x + 377.5)
 			return Speed
 
 	#Function for handling movement
 	def setMove(x):
 		rightThrottle = setThrottle(x)
 		leftThrottle = setThrottle(x * -1)
-		pwm.set_pwm(frontRight, 0, rightThrottle)
-		pwm.set_pwm(backRight, 0, rightThrottle)
-		pwm.set_pwm(frontLeft, 0, leftThrottle)
-		pwm.set_pwm(backLeft, 0, leftThrottle)
+		pwm.set_pwm(frontRight, 0, int(rightThrottle))
+		pwm.set_pwm(backRight, 0, int(rightThrottle))
+		pwm.set_pwm(frontLeft, 0, int(leftThrottle))
+		pwm.set_pwm(backLeft, 0, int(leftThrottle))
 
 	#Function for handling turning
 	def setTurn(x):
 		allThrottle = setThrottle(x)
-		pwm.set_pwm(frontRight, 0, allThrottle)
-		pwm.set_pwm(backRight, 0, allThrottle)
-		pwm.set_pwm(frontLeft, 0, allThrottle)
-		pwm.set_pwm(backLeft, 0, allThrottle)
+		pwm.set_pwm(frontRight, 0, int(allThrottle))
+		pwm.set_pwm(backRight, 0, int(allThrottle))
+		pwm.set_pwm(frontLeft, 0, int(allThrottle))
+		pwm.set_pwm(backLeft, 0, int(allThrottle))
 
 	#CONTROL
         if((JoyStick(leftstickX) > 0.2) or (JoyStick(leftstickX) < -0.2)):
 		setTurn(JoyStick(leftstickX))
         else:
 		setMove(JoyStick(leftstick))
-
+	if(Abutton):
+		pwm.set_pwm(12, 0, int(setThrottle(0.25)))
+	elif(Bbutton):
+		pwm.set_pwm(12, 0, int(setThrottle(-0.25)))
+	else:
+		pwm.set_pwm(12, 0, int(setThrottle(0)))
 #        def Throttle(x):
  #           if(x > 1):
   #              return 1
